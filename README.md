@@ -1,6 +1,8 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# My Portfolio
 
-## Getting Started
+A modern, responsive personal portfolio built with Next.js, Tailwind CSS, and Shadcn UI.
+
+## 🚀 Getting Started
 
 First, run the development server:
 
@@ -16,21 +18,46 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 👨‍💻 About Me
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+[Your Name] - [Brief summary of your profession, e.g., Full Stack Developer]. 
+This portfolio showcases my experience, projects, and skills.
 
-## Learn More
+## 🛠️ Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Framework:** [Next.js](https://nextjs.org/) (App Router)
+- **Library:** [React](https://reactjs.org/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **UI Components:** [Shadcn UI](https://ui.shadcn.com/)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 UI Components
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project leverages customized Shadcn UI components for a consistent and accessible design system:
+- Button
+- Card
+- Input
+- Label
+- Separator
+- Sheet
+- Textarea
+- Badge
 
-## Deploy on Vercel
+## 📚 Features / Sections
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Hero:** Impactful introduction and quick actions.
+- **About:** Personal background and mission.
+- **Skills:** Categorized list of technical skills.
+- **Experience:** Professional work history.
+- **Education:** Academic background.
+- **Projects:** Showcase of selected works with links.
+- **Contact:** Form or direct links to get in touch.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📫 Contact
+
+- **Email:** [your-email@example.com]
+- **LinkedIn:** [your-linkedin-profile]
+- **GitHub:** [your-github-profile]
+
+---
+*Built with ❤️ using Next.js and Shadcn UI.*
