@@ -29,18 +29,24 @@ export function Experience() {
   return (
     <section id="experience" className="py-24">
       <div className="container">
-        <div className="flex flex-col items-center text-center mb-16">
-          <Badge variant="outline" className="mb-4">Career</Badge>
-          <h2 className="text-3xl font-bold tracking-tight sm:text-5xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Experience</h2>
+        <div className="flex flex-col items-center text-center mb-16 fade-in-up">
+          <Badge variant="outline" className="mb-4 border-primary/30 bg-primary/5">Career</Badge>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-5xl gradient-text">Experience</h2>
           <p className="mt-4 text-muted-foreground max-w-[700px]">
             Professional journey and learning experiences
           </p>
         </div>
 
-        <div className="relative max-w-4xl mx-auto pl-8 border-l border-primary/20 space-y-12">
+        <div className="relative max-w-4xl mx-auto pl-8 space-y-12">
+          {/* Glowing timeline line */}
+          <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary/50 via-secondary/30 to-primary/10" />
+
           {experiences.map((exp, index) => (
-            <div key={index} className="relative">
-              <div className="absolute -left-[41px] top-1.5 h-4 w-4 rounded-full bg-primary border-4 border-background" />
+            <div key={index} className={`relative fade-in-left delay-${(index + 1) * 200}`}>
+              {/* Timeline dot with glow */}
+              <div className="absolute -left-[33px] top-1.5">
+                <div className="h-4 w-4 rounded-full bg-primary border-4 border-background shadow-[0_0_12px_hsl(263,70%,50%,0.5)]" />
+              </div>
               
               <div className="space-y-4">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
@@ -48,13 +54,15 @@ export function Experience() {
                   <div className="text-xl font-bold tracking-tight">{exp.company}</div>
                 </div>
 
-                <Card className="border-none bg-background/50 backdrop-blur-sm shadow-sm hover:shadow-md hover:shadow-primary/20 transition-all">
+                <Card className="border border-primary/10 bg-background/50 backdrop-blur-sm shadow-sm hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-0.5 neon-border">
                   <CardContent className="p-6">
-                    <h3 className="text-lg font-bold mb-3">{exp.role}</h3>
+                    <h3 className="text-lg font-bold mb-3 gradient-text-static inline-block">{exp.role}</h3>
                     <p className="text-muted-foreground mb-4 leading-relaxed">{exp.desc}</p>
                     <div className="flex flex-wrap gap-2">
                       {exp.tech.map((t) => (
-                        <Badge key={t} variant="outline" className="font-semibold">{t}</Badge>
+                        <Badge key={t} variant="outline" className="font-semibold border-primary/20 hover:border-primary/40 transition-colors">
+                          {t}
+                        </Badge>
                       ))}
                     </div>
                   </CardContent>

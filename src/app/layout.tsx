@@ -28,11 +28,24 @@ export default function RootLayout({
           inter.variable
         )}
       >
+        {/* Animated background orbs */}
         <div className="fixed inset-0 -z-10 overflow-hidden">
-          <div className="absolute top-[-10%] left-[-10%] h-[40%] w-[40%] rounded-full bg-primary/20 blur-[120px]" />
-          <div className="absolute bottom-[10%] right-[-5%] h-[35%] w-[35%] rounded-full bg-secondary/10 blur-[100px]" />
-          <div className="absolute top-[20%] right-[10%] h-[25%] w-[25%] rounded-full bg-primary/10 blur-[80px]" />
+          <div className="absolute top-[-10%] left-[-10%] h-[40%] w-[40%] rounded-full bg-primary/20 blur-[120px] float" />
+          <div className="absolute bottom-[10%] right-[-5%] h-[35%] w-[35%] rounded-full bg-secondary/10 blur-[100px] float-delayed" />
+          <div className="absolute top-[20%] right-[10%] h-[25%] w-[25%] rounded-full bg-primary/10 blur-[80px] float" />
+          {/* Extra subtle orb for depth */}
+          <div className="absolute bottom-[40%] left-[20%] h-[20%] w-[20%] rounded-full bg-secondary/5 blur-[100px] float-delayed" />
         </div>
+
+        {/* Subtle grid overlay */}
+        <div 
+          className="fixed inset-0 -z-10 opacity-[0.015]"
+          style={{
+            backgroundImage: `linear-gradient(hsl(263 70% 50%) 1px, transparent 1px), linear-gradient(90deg, hsl(263 70% 50%) 1px, transparent 1px)`,
+            backgroundSize: '60px 60px'
+          }}
+        />
+
         <Navbar />
         {children}
         <Footer />
