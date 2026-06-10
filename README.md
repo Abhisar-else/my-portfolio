@@ -19,8 +19,6 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## 👨‍💻 About Me
-
-[Your Name] - [Brief summary of your profession, e.g., Full Stack Developer]. 
 This portfolio showcases my experience, projects, and skills.
 
 ## 🛠️ Tech Stack
@@ -55,9 +53,9 @@ This project leverages customized Shadcn UI components for a consistent and acce
 
 ## 📫 Contact
 
-- **Email:** [your-email@example.com]
-- **LinkedIn:** [your-linkedin-profile]
-- **GitHub:** [your-github-profile]
+- **Email:** abhisarsharma2006@gmail.com
+- **LinkedIn:** https://www.linkedin.com/in/abhisar-sharma-670107321?utm_source=share_via&utm_content=profile&utm_medium=member_android
+- **GitHub:** 
 
 ---
 *Built with ❤️ using Next.js and Shadcn UI.*
