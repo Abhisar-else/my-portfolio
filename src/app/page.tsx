@@ -592,4 +592,390 @@ function Skills() {
           description="Technologies I reach for daily, and the courses that filled in the gaps."
         />
 
-        <div className="grid
+         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {SKILL_GROUPS.map((group, i) => (
+            <Reveal key={group.title} delay={i * 90}>
+              <Card className="h-full transition-colors hover:border-[var(--paper)]/25">
+                <CardHeader>
+                  <div className="mb-1 flex h-10 w-10 items-center justify-center rounded-lg bg-[var(--ember)]/10">
+                    <group.icon className="h-5 w-5 text-[var(--ember)]" />
+                  </div>
+                  <CardTitle>{group.title}</CardTitle>
+                </CardHeader>
+                <CardContent className="flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <Badge key={item} variant="outline">
+                      {item}
+                    </Badge>
+                  ))}
+                </CardContent>
+              </Card>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={270} className="mt-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">Certifications</CardTitle>
+              <CardDescription>Verified coursework, in brief.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {CERTIFICATIONS.map((cert) => (
+                  <div
+                    key={cert.title}
+                    className="rounded-lg border border-[var(--paper)]/10 p-4"
+                  >
+                    <Award className="mb-2 h-4 w-4 text-[var(--paper-dim)]" />
+                    <div className="font-ui text-sm font-medium text-[var(--paper)]">
+                      {cert.title}
+                    </div>
+                    <div className="mt-1 font-code text-xs text-[var(--paper-faint)]">
+                      {cert.org}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Experience & Achievements                                          */
+/* ------------------------------------------------------------------ */
+
+function Experience() {
+  return (
+    <section
+      id="experience"
+      className="border-t border-[var(--paper)]/[0.06] px-6 py-24"
+    >
+      <div className="mx-auto max-w-6xl">
+        <SectionHeading
+          index="03"
+          label="Experience & Achievements"
+          title="What I've been doing."
+        />
+
+        <div className="grid gap-12 lg:grid-cols-2">
+          <Reveal>
+            <h3 className="mb-6 font-code text-xs uppercase tracking-widest text-[var(--paper-dim)]">
+              Experience
+            </h3>
+            <div className="space-y-6 border-l border-[var(--paper)]/10 pl-6">
+              {EXPERIENCE.map((item) => (
+                <div key={item.role} className="relative">
+                  <span className="absolute -left-[29px] top-1.5 flex h-3 w-3 items-center justify-center rounded-full border-2 border-[var(--ember)] bg-[var(--ink)]" />
+                  <div className="font-code text-xs text-[var(--ember)]">
+                    {item.period}
+                  </div>
+                  <div className="mt-1 font-display text-lg font-semibold text-[var(--paper)]">
+                    {item.role}
+                  </div>
+                  <div className="font-ui text-sm text-[var(--paper-dim)]">
+                    {item.org}
+                  </div>
+                  <p className="mt-2 text-sm leading-relaxed text-[var(--paper-faint)]">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <h3 className="mb-6 font-code text-xs uppercase tracking-widest text-[var(--paper-dim)]">
+              Achievements
+            </h3>
+            <div className="space-y-4">
+              {ACHIEVEMENTS.map((item) => (
+                <Card
+                  key={item.title}
+                  className="transition-colors hover:border-[var(--paper)]/25"
+                >
+                  <CardContent className="flex gap-4 p-5">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--paper)]/[0.06]">
+                      <item.icon className="h-5 w-5 text-[var(--paper-dim)]" />
+                    </div>
+                    <div>
+                      <div className="font-ui text-sm font-semibold text-[var(--paper)]">
+                        {item.title}
+                      </div>
+                      <p className="mt-1 text-sm leading-relaxed text-[var(--paper-faint)]">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Projects — renders directly from src/data/projects.ts              */
+/* ------------------------------------------------------------------ */
+
+function Projects() {
+  return (
+    <section
+      id="projects"
+      className="border-t border-[var(--paper)]/[0.06] px-6 py-24"
+    >
+      <div className="mx-auto max-w-6xl">
+        <SectionHeading
+          index="04"
+          label="Projects"
+          title="Selected work."
+          description="Five builds spanning mobile, web, data, and hardware — each solving a real problem end to end."
+        />
+
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, i) => (
+            <Reveal key={project.id} delay={(i % 3) * 90}>
+              <Card className="group flex h-full flex-col transition-colors hover:border-[var(--ember)]/30">
+                <CardHeader>
+                  <div className="mb-2 font-code text-xs text-[var(--paper-faint)]">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <CardTitle>{project.title}</CardTitle>
+                  <CardDescription>{project.tagline}</CardDescription>
+                </CardHeader>
+                <CardContent className="flex flex-1 flex-col">
+                  <p className="flex-1 text-sm leading-relaxed text-[var(--paper-dim)]">
+                    {project.description}
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-1.5">
+                    {project.tech.map((t) => (
+                      <Badge key={t} variant="outline">
+                        {t}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+                <CardFooter className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 font-code text-xs text-[var(--paper)] transition-transform group-hover:translate-x-0.5"
+                    >
+                      Live demo <ArrowUpRight className="h-3.5 w-3.5" />
+                    </a>
+                  )}
+                  {project.link ? (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 font-code text-xs text-[var(--ember)] transition-transform group-hover:translate-x-0.5"
+                    >
+                      {project.linkLabel} <ArrowUpRight className="h-3.5 w-3.5" />
+                    </a>
+                  ) : (
+                    <span className="font-code text-xs text-[var(--paper-faint)]">
+                      {project.linkLabel}
+                    </span>
+                  )}
+                </CardFooter>
+              </Card>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Contact                                                             */
+/* ------------------------------------------------------------------ */
+
+function Contact() {
+  const [sent, setSent] = useState(false);
+
+  return (
+    <section
+      id="contact"
+      className="border-t border-[var(--paper)]/[0.06] px-6 py-24"
+    >
+      <div className="mx-auto max-w-6xl">
+        <SectionHeading
+          index="05"
+          label="Get In Touch"
+          title="Let's build something."
+          description="Open to internships, collaborations, and interesting problems. Reach out directly, or drop a note below."
+        />
+
+        <div className="grid gap-10 lg:grid-cols-2">
+          <Reveal className="space-y-3">
+            {CONTACT_LINKS.map((c) => (
+              <a
+                key={c.label}
+                href={c.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 rounded-xl border border-[var(--paper)]/10 p-4 transition-colors hover:border-[var(--paper)]/25"
+              >
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[var(--ember)]/10">
+                  <c.icon className="h-5 w-5 text-[var(--ember)]" />
+                </div>
+                <div>
+                  <div className="font-code text-[11px] uppercase tracking-wider text-[var(--paper-faint)]">
+                    {c.label}
+                  </div>
+                  <div className="font-ui text-sm font-medium text-[var(--paper)]">
+                    {c.value}
+                  </div>
+                </div>
+              </a>
+            ))}
+          </Reveal>
+
+          <Reveal delay={120}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                setSent(true);
+              }}
+              className="space-y-4 rounded-2xl border border-[var(--paper)]/10 p-6"
+            >
+              <div>
+                <label
+                  htmlFor="name"
+                  className="mb-1.5 block font-code text-xs uppercase tracking-wider text-[var(--paper-dim)]"
+                >
+                  Name
+                </label>
+                <input
+                  id="name"
+                  required
+                  className="w-full rounded-lg border border-[var(--paper)]/15 bg-transparent px-3.5 py-2.5 text-sm text-[var(--paper)] outline-none transition-colors focus:border-[var(--ember)]"
+                  placeholder="Your name"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="email"
+                  className="mb-1.5 block font-code text-xs uppercase tracking-wider text-[var(--paper-dim)]"
+                >
+                  Email
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  required
+                  className="w-full rounded-lg border border-[var(--paper)]/15 bg-transparent px-3.5 py-2.5 text-sm text-[var(--paper)] outline-none transition-colors focus:border-[var(--ember)]"
+                  placeholder="you@example.com"
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="message"
+                  className="mb-1.5 block font-code text-xs uppercase tracking-wider text-[var(--paper-dim)]"
+                >
+                  Message
+                </label>
+                <textarea
+                  id="message"
+                  required
+                  rows={4}
+                  className="w-full resize-none rounded-lg border border-[var(--paper)]/15 bg-transparent px-3.5 py-2.5 text-sm text-[var(--paper)] outline-none transition-colors focus:border-[var(--ember)]"
+                  placeholder="What are you building?"
+                />
+              </div>
+              <button
+                type="submit"
+                className={cn(buttonVariants({ variant: "default" }), "w-full")}
+              >
+                {sent ? "Message noted — thank you!" : "Send Message"}
+                {!sent && <Send className="h-4 w-4" />}
+              </button>
+              {sent && (
+                <p className="font-code text-xs text-[var(--paper-dim)]">
+                  This form is a placeholder — wire it to an email service
+                  (Formspree, Resend) or an API route to actually receive
+                  submissions.
+                </p>
+              )}
+            </form>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Footer                                                              */
+/* ------------------------------------------------------------------ */
+
+function Footer() {
+  return (
+    <footer className="border-t border-[var(--paper)]/[0.06] px-6 py-10">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 sm:flex-row">
+        <p className="font-code text-xs text-[var(--paper-faint)]">
+          © {new Date().getFullYear()} Abhisar Sharma. Built with Next.js &amp;
+          shadcn/ui.
+        </p>
+        <div className="flex gap-6">
+          {[
+            { label: "GitHub", href: "https://github.com/Abhisar-else" },
+            {
+              label: "LinkedIn",
+              href: "https://www.linkedin.com/in/abhisar-sharma-670107321/",
+            },
+            { label: "Email", href: "mailto:abhisarsharma2006@gmail.com" },
+          ].map((l) => (
+            <a
+              key={l.label}
+              href={l.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-code text-xs text-[var(--paper-faint)] transition-colors hover:text-[var(--ember)]"
+            >
+              {l.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Page                                                                */
+/* ------------------------------------------------------------------ */
+
+export default function Portfolio() {
+  return (
+    <>
+      <a
+        href="#top"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-md focus:bg-[var(--ember)] focus:px-4 focus:py-2 focus:font-code focus:text-sm focus:text-[var(--ink)]"
+      >
+        Skip to content
+      </a>
+      <Nav />
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Experience />
+        <Projects />
+        <Contact />
+      </main>
+      <Footer />
+    </>
+  );
+}
