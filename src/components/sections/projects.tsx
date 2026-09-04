@@ -1,135 +1,120 @@
-export type Project = {
-  id: string;
-  title: string;
-  tagline: string;
-  description: string;
-  tech: string[];
-  link: string;
-  linkLabel: string;
-  /** Optional live/deployed URL. Rendered as a second link when present. */
-  demo?: string;
-};
+import Link from "next/link";
+import { ExternalLink, Star } from "lucide-react";
 
-/**
- * Add a new project by appending an object to this array — nothing else
- * in the codebase needs to change. The Projects section in
- * `app/page.tsx` renders directly from `projects`, in order.
- *
- * Fields:
- *   id          unique slug, used as the React key
- *   title       project name
- *   tagline     short one-line descriptor shown under the title
- *   description 1-3 sentences on what it does / how it's built
- *   tech        array of stack tags rendered as badges
- *   link        repo URL, or "" if there isn't a public one (hardware, etc.)
- *   linkLabel   text shown next to the link ("View on GitHub", "Hardware project — no repo"...)
- *   demo        optional — a live/deployed URL, rendered as a second link
- *
- * Everything below (except Smart Dustbin, which is hardware and has no repo)
- * was pulled from github.com/Abhisar-else's non-fork repositories and
- * verified against each repo's own README — not guessed from the name.
- */
-export const projects: Project[] = [
-  {
-    id: "ai-interview-simulator",
-    title: "AI Interview Simulator",
-    tagline: "Full-stack adaptive mock-interview platform",
-    description:
-      "Parses an uploaded resume, then runs adaptive multi-turn interviews (technical, coding, HR) tailored to it — with tab-switch focus tracking, a voice mode, and radar-chart performance analytics. Built during the Positiveway Solutions internship.",
-    tech: ["React", "FastAPI", "PostgreSQL", "SQLAlchemy", "Gemini AI", "JWT"],
-    link: "https://github.com/Abhisar-else/ai-interview-assistant-postiveway-",
-    linkLabel: "View on GitHub",
-    demo: "https://ai-interview-assistant-postiveway.vercel.app",
-  },
-  {
-    id: "dsa-visualizer",
-    title: "DSA Visualizer",
-    tagline: "Algorithm visualizer with a C++/WASM engine",
-    description:
-      "A browser-based sorting/search visualizer where the computation itself runs in compiled C++, recorded step-by-step into an animated timeline, with run metrics persisted to an embedded SQLite database.",
-    tech: ["C++", "WebAssembly", "JavaScript", "SQLite"],
-    link: "https://github.com/Abhisar-else/data-structure-algorithm-tracker-",
-    linkLabel: "View on GitHub",
-    demo: "https://data-structure-algorithm-tracker.vercel.app",
-  },
-  {
-    id: "field-survey-app",
-    title: "Field Survey App",
-    tagline: "Production-ready distributed data-collection framework",
-    description:
-      'A mobile-first survey platform built with Flutter, solving field data\'s "ghost data" problem with offline-first local storage plus real-time cloud sync. Surveys share by QR code and converge into a live analytics dashboard.',
-    tech: ["Flutter", "Firebase", "Node.js", "MySQL", "SQLite", "JWT"],
-    link: "https://github.com/Abhisar-else/feild_survey_app",
-    linkLabel: "View on GitHub",
-  },
-  {
-    id: "idlequest",
-    title: "IdleQuest",
-    tagline: "Browser-based idle RPG, .NET 8 backend",
-    description:
-      "An idle RPG on a clean-architecture .NET 8 backend (Domain → Application → Infrastructure → API) with EF Core persistence, JWT auth, and a Redis-backed distributed cache that falls back to in-memory automatically.",
-    tech: ["ASP.NET Core 8", "C#", "EF Core", "JWT", "Redis"],
-    link: "https://github.com/Abhisar-else/Idlequest",
-    linkLabel: "View on GitHub",
-  },
-  {
-    id: "ai-whatsapp-assistant",
-    title: "AI WhatsApp Executive Assistant",
-    tagline: "AI support assistant over the WhatsApp Business API",
-    description:
-      "A FastAPI assistant that answers questions from a knowledge base, schedules meetings through a slot-filling conversation flow, and gives admins a full dashboard — with an LLM fallback chain across Gemini, Groq, and OpenRouter. Built during the Positiveway Solutions internship.",
-    tech: ["Python", "FastAPI", "SQLite", "Meta Cloud API", "Gemini"],
-    link: "https://github.com/Abhisar-else/ai-assistent-whatsapp",
-    linkLabel: "View on GitHub",
-  },
-  {
-    id: "ai-lead-discovery",
-    title: "AI Business Lead Discovery",
-    tagline: "Digital-presence gap analysis pipeline",
-    description:
-      "An automated pipeline that scrapes business listings, audits their web presence, and scores lead potential with Gemini — surfaced through a Streamlit dashboard and synced automatically to Google Sheets. Built during the Positiveway Solutions internship.",
-    tech: ["Python", "Streamlit", "Gemini AI", "SerpAPI", "Google Sheets API"],
-    link: "https://github.com/Abhisar-else/AI-Based-Business-Lead-Discovery-",
-    linkLabel: "View on GitHub",
-  },
-  {
-    id: "water-body-data-art",
-    title: "Water Body — Earth Systems Data Art",
-    tagline: "Interactive Earth-science data visualization",
-    description:
-      "An 8-slide Streamlit dashboard visualizing open Earth-science datasets — NASA EPIC imagery, global river networks, ocean currents, sea-ice cycles, and live satellite tracking — inspired by the Water Body art installation.",
-    tech: ["Python", "Streamlit", "GDAL", "NASA & Copernicus APIs"],
-    link: "https://github.com/Abhisar-else/space-project",
-    linkLabel: "View on GitHub",
-  },
-  {
-    id: "job-market-analyzer",
-    title: "Job Market Analyzer",
-    tagline: "Job-listing data analysis tool",
-    description:
-      "A Python tool for processing job-listing data to surface patterns in demand and requirements across roles.",
-    tech: ["Python", "Data Analysis"],
-    link: "https://github.com/Abhisar-else/Job_Market_Analyizer-",
-    linkLabel: "View on GitHub",
-  },
-  {
-    id: "uptoskills-project",
-    title: "UptoSkills Project",
-    tagline: "Internship web application",
-    description:
-      "A full-stack web app built during the MERN Stack Developer internship at UptoSkills.",
-    tech: ["JavaScript", "React", "REST API"],
-    link: "https://github.com/Abhisar-else/uptoskills-project-",
-    linkLabel: "View on GitHub",
-  },
-  {
-    id: "smart-dustbin",
-    title: "Smart Dustbin",
-    tagline: "IoT-based waste management system",
-    description:
-      "An automated hardware build using ultrasonic distance sensing to trigger a servo-controlled lid, cutting manual contact and easing collection routes.",
-    tech: ["Arduino Uno R3", "Ultrasonic Sensor", "Servo Motor", "C++"],
-    link: "",
-    linkLabel: "Hardware project — no repo",
-  },
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { GitHubIcon } from "@/components/icons";
+
+const projects = [
+{
+icon: "📱",
+title: "Survey Field App",
+desc: "A mobile-first distributed survey platform built with Flutter. Features offline-first sync, conflict resolution, and safe concurrent writes with a Node.js/Express backend.",
+tags: ["Flutter", "Node.js", "MySQL", "SQLite", "JWT"],
+lang: "JavaScript",
+langColor: "bg-yellow-400",
+github: "https://github.com/Abhisar-else/feild_survey_app"
+},
+{
+icon: "⚔️",
+title: "IdleQuest RPG",
+desc: "An idle RPG game with a .NET 8 backend. Features character progression, quest systems, and real-time game mechanics with a modern C# architecture.",
+tags: [".NET 8", "C#", "Game Dev", "REST API"],
+lang: "C#",
+langColor: "bg-purple-500",
+github: "https://github.com/Abhisar-else/Idlequest",
+stars: 1
+},
+{
+icon: "📊",
+title: "Job Market Analyzer",
+desc: "A Python-based analytical tool that processes and visualizes job market data to identify trends, in-demand skills, and salary insights for job seekers.",
+tags: ["Python", "Data Analysis", "Pandas", "Visualization"],
+lang: "Python",
+langColor: "bg-blue-500",
+github: "https://github.com/Abhisar-else/Job_Market_Analyizer-"
+},
+{
+icon: "🚀",
+title: "UptoSkills Project",
+desc: "Web development project built during the UptoSkills internship. Full-stack web application with modern JavaScript and responsive design principles.",
+tags: ["JavaScript", "HTML/CSS", "Full-Stack", "Responsive"],
+lang: "JavaScript",
+langColor: "bg-yellow-400",
+github: "https://github.com/Abhisar-else/uptoskills-project-"
+}
 ];
+
+export function Projects() {
+return (
+<section id="projects" className="py-24 bg-muted/30 relative">
+{/* Section glow */}
+<div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[1px] bg-gradient-to-r from-transparent via-secondary/50 to-transparent" />
+
+<div className="container">    
+    <div className="flex flex-col items-center text-center mb-16 fade-in-up">    
+      <Badge variant="outline" className="mb-4 border-primary/30 bg-primary/5">Portfolio</Badge>    
+      <h2 className="text-3xl font-bold tracking-tight sm:text-5xl gradient-text">Featured Projects</h2>    
+      <p className="mt-4 text-muted-foreground max-w-[700px]">    
+        A selection of projects I&apos;ve built and contributed to    
+      </p>    
+    </div>    
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">    
+      {projects.map((project, i) => (    
+        <Card     
+          key={project.title}     
+          className={`flex flex-col h-full border border-primary/10 shadow-sm bg-background/50 backdrop-blur-sm hover:shadow-xl hover:shadow-primary/10 transition-all duration-300 hover:-translate-y-2 neon-border overflow-hidden relative group fade-in-scale delay-${(i + 1) * 100}`}    
+        >    
+          {/* Hover gradient overlay */}    
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />    
+
+          <CardHeader className="relative z-10">    
+            <div className="flex items-start justify-between mb-2">    
+              <div className="text-4xl p-2 rounded-xl bg-muted/50 group-hover:scale-110 transition-transform duration-300">{project.icon}</div>    
+              <div className="flex gap-2">    
+                <Button variant="ghost" size="icon" asChild className="h-9 w-9 rounded-full hover:bg-primary/10 hover:text-primary transition-colors">    
+                  <Link href={project.github} target="_blank" aria-label="GitHub Repository">    
+                    <GitHubIcon />    
+                  </Link>    
+                </Button>    
+                <Button variant="ghost" size="icon" asChild className="h-9 w-9 rounded-full hover:bg-secondary/10 hover:text-secondary transition-colors">    
+                  <Link href={project.github} target="_blank" aria-label="Live Demo">    
+                    <ExternalLink className="h-5 w-5" />    
+                  </Link>    
+                </Button>    
+              </div>    
+            </div>    
+            <CardTitle className="text-2xl font-bold tracking-tight group-hover:text-primary transition-colors">{project.title}</CardTitle>    
+            <CardDescription className="text-base line-clamp-3">{project.desc}</CardDescription>    
+          </CardHeader>    
+          <CardContent className="flex-grow relative z-10">    
+            <div className="flex flex-wrap gap-2">    
+              {project.tags.map((tag) => (    
+                <Badge key={tag} variant="secondary" className="font-semibold uppercase text-[10px] border border-border/50 hover:border-primary/30 transition-colors">    
+                  {tag}    
+                </Badge>    
+              ))}    
+            </div>    
+          </CardContent>    
+          <CardFooter className="pt-0 border-t border-primary/10 mt-6 flex items-center justify-between py-4 relative z-10">    
+            <div className="flex items-center gap-2">    
+              <div className={`h-3 w-3 rounded-full ${project.langColor} shadow-[0_0_6px_currentColor]`} />    
+              <span className="text-sm font-medium text-muted-foreground">{project.lang}</span>    
+            </div>    
+            {project.stars && (    
+              <div className="flex items-center gap-1 text-sm font-medium text-muted-foreground">    
+                <Star className="h-3.5 w-3.5 text-yellow-400 fill-yellow-400" />    
+                {project.stars}    
+              </div>    
+            )}    
+          </CardFooter>    
+        </Card>    
+      ))}    
+    </div>    
+  </div>    
+</section>
+
+);
+}
