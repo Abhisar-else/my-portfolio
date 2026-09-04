@@ -2,287 +2,116 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  :root {
-    --background: 222 47% 2%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 4% / 0.5;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 2%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 263 70% 50%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 187 92% 45%;
-    --secondary-foreground: 222 47% 1%;
-    --muted: 222 47% 10%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 263 70% 50% / 0.1;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 263 70% 50% / 0.2;
-    --input: 263 70% 50% / 0.2;
-    --ring: 263 70% 50%;
-    --radius: 0.75rem;
-  }
-
-  .dark {
-    --background: 222 47% 2%;
-    --foreground: 210 40% 98%;
-    --card: 222 47% 4% / 0.5;
-    --card-foreground: 210 40% 98%;
-    --popover: 222 47% 2%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 263 70% 50%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 187 92% 45%;
-    --secondary-foreground: 222 47% 1%;
-    --muted: 222 47% 10%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 263 70% 50% / 0.1;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 263 70% 50% / 0.2;
-    --input: 263 70% 50% / 0.2;
-    --ring: 263 70% 50%;
-  }
+/* ---------------------------------------------------------------
+   Design tokens — "ink & ember" editorial-technical theme.
+   Referenced throughout via Tailwind arbitrary values, e.g.
+   bg-[var(--ink)], text-[var(--ember)]. No tailwind.config.ts
+   edits required.
+---------------------------------------------------------------- */
+/**
+ * Strict 60-30-10 palette. Exactly three hues, no white as the
+ * dominant color, everything else is an opacity/lightness step of
+ * one of these three — not a new color.
+ *
+ *   60% DOMINANT   --ink    warm near-black — page background, the
+ *                            surface everything else sits on
+ *   30% SECONDARY  --paper  warm off-white (not pure #fff) — body
+ *                            text, card fills, borders
+ *   10% ACCENT     --ember  burnt orange — reserved for the small set
+ *                            of true accent moments: primary CTA,
+ *                            active nav state, section eyebrows,
+ *                            key stat numbers. Not a hover default.
+ */
+:root {
+  --ink: #0c0a08;
+  --ink-raised: #151210;   /* --ink, one step lighter */
+  --paper: #f4efe4;
+  --paper-dim: #a39a8a;    /* --paper, dimmed for secondary text */
+  --paper-faint: #6b6459;  /* --paper, dimmed further for tertiary text */
+  --ember: #e8672c;
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+* {
+  border-color: rgba(244, 239, 228, 0.1);
+}
 
-  /* Smooth scrollbar styling */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background: hsl(222 47% 4%);
-  }
-  ::-webkit-scrollbar-thumb {
-    background: hsl(263 70% 50% / 0.4);
-    border-radius: 4px;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: hsl(263 70% 50% / 0.6);
-  }
+html {
+  scroll-behavior: smooth;
+}
 
-  /* Selection styling */
-  ::selection {
-    background: hsl(263 70% 50% / 0.3);
-    color: hsl(210 40% 98%);
-  }
+body {
+  min-height: 100dvh;
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .font-display {
+    font-family: var(--font-display), Georgia, "Times New Roman", serif;
   }
-
-  /* Glass card with enhanced glow */
-  .glass {
-    @apply bg-card backdrop-blur-xl border border-border/50 shadow-2xl;
+  .font-ui {
+    font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   }
-  .glass-hover {
-    @apply hover:bg-card/80 hover:border-primary/30 transition-all duration-300;
-  }
-
-  /* Animated gradient text */
-  .gradient-text {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(
-      135deg,
-      hsl(263 70% 50%) 0%,
-      hsl(280 80% 60%) 25%,
-      hsl(187 92% 45%) 50%,
-      hsl(263 70% 60%) 75%,
-      hsl(263 70% 50%) 100%
-    );
-    background-size: 300% 300%;
-    animation: gradient-shift 6s ease infinite;
-  }
-
-  /* Static gradient text (non-animated fallback) */
-  .gradient-text-static {
-    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
-  }
-
-  /* Neon glow effects */
-  .neon-glow {
-    box-shadow:
-      0 0 15px hsl(263 70% 50% / 0.3),
-      0 0 45px hsl(263 70% 50% / 0.1);
-  }
-  .neon-glow-hover {
-    transition: box-shadow 0.4s ease;
-  }
-  .neon-glow-hover:hover {
-    box-shadow:
-      0 0 20px hsl(263 70% 50% / 0.4),
-      0 0 60px hsl(263 70% 50% / 0.15),
-      0 0 100px hsl(263 70% 50% / 0.05);
-  }
-
-  .neon-glow-cyan {
-    box-shadow:
-      0 0 15px hsl(187 92% 45% / 0.3),
-      0 0 45px hsl(187 92% 45% / 0.1);
-  }
-
-  /* Neon border */
-  .neon-border {
-    position: relative;
-  }
-  .neon-border::before {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(135deg, hsl(263 70% 50% / 0.5), hsl(187 92% 45% / 0.5));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-  .neon-border:hover::before {
-    opacity: 1;
-  }
-
-  /* Fade-in animations */
-  .fade-in-up {
-    animation: fade-in-up 0.7s ease-out both;
-  }
-  .fade-in-left {
-    animation: fade-in-left 0.7s ease-out both;
-  }
-  .fade-in-right {
-    animation: fade-in-right 0.7s ease-out both;
-  }
-  .fade-in-scale {
-    animation: fade-in-scale 0.6s ease-out both;
-  }
-
-  /* Stagger delays */
-  .delay-100 { animation-delay: 100ms; }
-  .delay-200 { animation-delay: 200ms; }
-  .delay-300 { animation-delay: 300ms; }
-  .delay-400 { animation-delay: 400ms; }
-  .delay-500 { animation-delay: 500ms; }
-  .delay-600 { animation-delay: 600ms; }
-
-  /* Floating animation */
-  .float {
-    animation: float 6s ease-in-out infinite;
-  }
-  .float-delayed {
-    animation: float 6s ease-in-out infinite;
-    animation-delay: -3s;
-  }
-
-  /* Pulse ring */
-  .pulse-ring {
-    animation: pulse-ring 2s ease-out infinite;
-  }
-
-  /* Shimmer line */
-  .shimmer {
-    position: relative;
-    overflow: hidden;
-  }
-  .shimmer::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      hsl(263 70% 50% / 0.08) 50%,
-      transparent 100%
-    );
-    animation: shimmer 3s ease-in-out infinite;
+  .font-code {
+    font-family: var(--font-mono), ui-monospace, "SFMono-Regular", monospace;
   }
 }
 
-/* Keyframes */
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+::selection {
+  background: var(--ember);
+  color: var(--ink);
 }
 
-@keyframes fade-in-up {
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--paper-faint);
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes fade-up {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
-@keyframes fade-in-left {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
 }
 
-@keyframes fade-in-right {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fade-in-scale {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-
-@keyframes pulse-ring {
-  0% {
-    transform: scale(1);
-    opacity: 0.8;
-  }
+@keyframes blink-caret {
+  0%,
   100% {
-    transform: scale(2.5);
+    opacity: 1;
+  }
+  50% {
     opacity: 0;
   }
 }
-
-@keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-@keyframes spin-slow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.caret {
+  animation: blink-caret 1s step-end infinite;
 }
